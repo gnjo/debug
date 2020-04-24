@@ -1,4 +1,6 @@
-
+/*history
+v0.5 logsize auto
+*/
 /*usage
 let a={}
 a=debug(a,'a')
@@ -23,6 +25,7 @@ a.c=300
  function sniff(o,caller){return new Proxy(o,{ set:(oo,k,v)=>{return caller(oo,k,v),oo[k]=v } }) }
  ;
  let buf=[]
+ let logsize=~~(window.innerHeight/10)
  ;
  function debug(obj,symbol){
   let css=`color:#0f0;position:fixed;right:9px;top:9px;font-size:9px` 
@@ -33,9 +36,13 @@ a.c=300
   let log=(ary)=>{
    el.textContent=ary.map(d=>d[0]+'.'+d[1]+'='+d[2]).reverse().join('\n')
   }
-  let caller=(o,k,v)=>{buf.push([symbol,k,v]),log(buf.slice(-20)) }
+  let caller=(o,k,v)=>{buf.push([symbol,k,v]),log(buf.slice(-1*logsize)) } //v0.5
   obj=is.object(obj)?sniff(obj,caller):obj
   return obj
  }
+ 
+ window.addEventListener('resize',(ev)=>{
+ logsize=~~(window.innerHeight/10)
+})
  root.debug=debug
 })(this);
