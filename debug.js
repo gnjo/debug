@@ -31,7 +31,7 @@ a.c=300
   ;
   symbol=symbol||'$'
   let log=(ary)=>{
-   el.textContent=ary.map(d=>d[0]+'>'+d[1]+'='+d[2]).reverse().join('\n')
+   el.textContent=ary.map(d=>d[0]+'.'+d[1]+'='+d[2]).reverse().join('\n')
   }
   let caller=(o,k,v)=>{buf.push([symbol,k,v]),log(buf.slice(-20)) }
   obj=is.object(obj)?sniff(obj,caller):obj
