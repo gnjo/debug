@@ -23,10 +23,11 @@ a.c=300
  let is={}
  is.object = function(obj){var type = typeof obj;return type === 'function' || type === 'object' && !!obj}
  function sniff(o,caller){return new Proxy(o,{ set:(oo,k,v)=>{return caller(oo,k,v),oo[k]=v } }) }
+ function getlogsize(){return ~~(window.innerHeight/20)}
+
  ;
  let buf=[]
- let logsize=~~(window.innerHeight/10)
- console.log(logsize)
+ let logsize=getlogsize()
  ;
  function debug(obj,symbol){
   let css=`color:#0f0;position:fixed;right:9px;top:9px;font-size:9px` 
@@ -43,7 +44,7 @@ a.c=300
  }
  
  window.addEventListener('resize',(ev)=>{
- logsize=~~(window.innerHeight/10)
+ logsize=getlogsize()
 })
  root.debug=debug
 })(this);
