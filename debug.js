@@ -26,6 +26,7 @@ a.c=300
  ;
  let buf=[]
  let logsize=~~(window.innerHeight/10)
+ console.log(logsize)
  ;
  function debug(obj,symbol){
   let css=`color:#0f0;position:fixed;right:9px;top:9px;font-size:9px` 
